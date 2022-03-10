@@ -24,7 +24,7 @@ def principal_feature_analysis(cluster_size, data, number_output_functions, freq
     # flag if the corresponding entry of the global adjacency matrix is already calculated
     is_entry_calculated = np.zeros((m, m))
     while(True):
-        print("Nodes left: " + str(number_nodes))
+        # print("Nodes left: " + str(number_nodes))
         list_of_clusters = []
         intermediate_list = []
         if shuffle_feature_numbers == 1:
@@ -101,7 +101,7 @@ def principal_feature_analysis(cluster_size, data, number_output_functions, freq
                 for current_graph in list_graphs_to_divide:
                     # obtain a set of minimal cardinality to dissect the corresponding graph with a minimum cut algorithm
                     set_nodes_to_delete = nx.minimum_node_cut(current_graph)
-                    print(str(len(set_nodes_to_delete)) + " nodes removed!")
+                    # print(str(len(set_nodes_to_delete)) + " nodes removed!")
                     # remove the dissected graph from the list of graphs to divide
                     list_graphs_to_divide.remove(current_graph)
                     for node in list(set_nodes_to_delete):
@@ -131,6 +131,6 @@ def principal_feature_analysis(cluster_size, data, number_output_functions, freq
             cluster_size = number_nodes
         if len(list_of_clusters) <= 1:    # If the total graph of all features has been considered stop
             break
-    print("Nodes left: " + str(number_nodes))
-    print('Dissection done!')
+    # print("Nodes left: " + str(number_nodes))
+    # print('Dissection done!')
     return list_nodes_complete_sub_graphs, counter_bin_less_than5 / number_chisquare_tests * 100, counter_bin_less_than1 / number_chisquare_tests * 100

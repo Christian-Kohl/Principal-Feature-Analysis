@@ -35,7 +35,7 @@ def pfa(data_loc, from_csv=False, number_output_functions=1, number_sweeps=1, cl
     else:
         data = pd.DataFrame(data_loc)
     for sweep in range(0, number_sweeps):
-        print("Sweep number: " + str(sweep+1))
+        # print("Sweep number: " + str(sweep+1))
         pf_ds, pf, indices_principal_feature_values = find_relevant_principal_features(
             data, number_output_functions, cluster_size, alpha, min_n_datapoints_a_bin, shuffle_feature_numbers, frac)
         list_pf_ds.append(pf_ds)
@@ -56,7 +56,7 @@ def pfa(data_loc, from_csv=False, number_output_functions=1, number_sweeps=1, cl
         f.close()
         np.savetxt("global_indices_and_principal_features_state_dependency" +
                    str(sweep)+".csv", indices_principal_feature_values, delimiter=",")
-    print("Time needed for the PFA in seconds: " + str(time.time()-start_time))
+    # print("Time needed for the PFA in seconds: " + str(time.time()-start_time))
 
     # Intersect the lists of principal features related to the output function
     # All the features corresponding to the returned subgraphs are considered in each list
@@ -84,11 +84,11 @@ def pfa(data_loc, from_csv=False, number_output_functions=1, number_sweeps=1, cl
     # The mutual information is calculated between the feature represented in the first row of the data frame and the feature referred to in the index feature column.
     # The first row is consequently the mutual information of the corresponding component of the output-function with itself
     if calculate_mutual_information == 1:
-        print("Calculating mutual information")
+        # print("Calculating mutual information")
         list_data_frame_feature_mutual_information = get_mutual_information(
             data, number_output_functions, pf_from_intersection, min_n_datapoints_a_bin, basis_log_mutual_information)
-        for i in range(0, len(list_data_frame_feature_mutual_information)):
-            print(list_data_frame_feature_mutual_information[i])
+        # for i in range(0, len(list_data_frame_feature_mutual_information)):
+        # print(list_data_frame_feature_mutual_information[i])
         return pf_from_intersection, list_data_frame_feature_mutual_information
 
-    return pf_from_intersection
+    return data.iloc[pf_from_intersection]
