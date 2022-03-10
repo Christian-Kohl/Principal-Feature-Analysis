@@ -40,22 +40,22 @@ def pfa(data_loc, from_csv=False, number_output_functions=1, number_sweeps=1, cl
             data, number_output_functions, cluster_size, alpha, min_n_datapoints_a_bin, shuffle_feature_numbers, frac)
         list_pf_ds.append(pf_ds)
         # Output the principal features related to the output function in a list where the numbers correspod to the rows of the input csv-file
-        f = open("principal_features_depending_system_state" +
-                 str(sweep)+".txt", "w")
-        for i in pf_ds:
-            for j in i:
-                f.write(str(j) + str(","))
-            f.write("\n")
-        f.close()
-        # Output the principal features in a list where the numbers correspond to the rows of the input csv-file
-        f = open("principal_features_global_indices"+str(sweep)+".txt", "w")
-        for i in pf:
-            for j in i:
-                f.write(str(j) + str(","))
-            f.write("\n")
-        f.close()
-        np.savetxt("global_indices_and_principal_features_state_dependency" +
-                   str(sweep)+".csv", indices_principal_feature_values, delimiter=",")
+        # f = open("principal_features_depending_system_state" +
+        #          str(sweep)+".txt", "w")
+        # for i in pf_ds:
+        #     for j in i:
+        #         f.write(str(j) + str(","))
+        #     f.write("\n")
+        # f.close()
+        # # Output the principal features in a list where the numbers correspond to the rows of the input csv-file
+        # f = open("principal_features_global_indices"+str(sweep)+".txt", "w")
+        # for i in pf:
+        #     for j in i:
+        #         f.write(str(j) + str(","))
+        #     f.write("\n")
+        # f.close()
+        # np.savetxt("global_indices_and_principal_features_state_dependency" +
+        #            str(sweep)+".csv", indices_principal_feature_values, delimiter=",")
     # print("Time needed for the PFA in seconds: " + str(time.time()-start_time))
 
     # Intersect the lists of principal features related to the output function
@@ -75,10 +75,10 @@ def pfa(data_loc, from_csv=False, number_output_functions=1, number_sweeps=1, cl
         for i in range(1, len(list_principal_features_depending_on_system_state_for_intersection)):
             pf_from_intersection = list(set(pf_from_intersection).intersection(
                 set(list_principal_features_depending_on_system_state_for_intersection[i])))
-        f = open("principal_features_depending_system_state_intersection.txt", "w")
-        for i in pf_from_intersection:
-            f.write(str(i)+str(","))
-        f.close()
+        # f = open("principal_features_depending_system_state_intersection.txt", "w")
+        # for i in pf_from_intersection:
+        #     f.write(str(i)+str(","))
+        # f.close()
 
     # Outputs a list of DataFrames where the index feature refers to the row in the csv-file.
     # The mutual information is calculated between the feature represented in the first row of the data frame and the feature referred to in the index feature column.
